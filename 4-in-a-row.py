@@ -1,5 +1,4 @@
 import tkinter as tk
-
 root = tk.Tk()
 root.geometry("950x640")
 root.configure(background="#b8d0eb")
@@ -259,6 +258,15 @@ def pos(value):
             l7 += 1
             turns += 1
 
+def teclado(event):
+    nums = '1','2','3','4','5','6','7'
+    if event.char not in nums:
+        pass
+    else:
+        pst = event.char
+        pst = int(pst)
+        pos(pst)
+
 class box():
     def __init__(self, root):
         self.a = tk.Label(
@@ -276,8 +284,10 @@ class boton():
         self.butt = tk.Button(
             root,
             bg="#26cca3",
-            width=7,
-            height=3,
+            text="1",
+            font=("Courier",22,"bold"),
+            width=3,
+            height=1,
             bd="3",
             relief="solid",
             command=lambda: pos(value)
@@ -418,7 +428,9 @@ for i in buttons:
     ps_butt = pos_buttons[j]
     i = boton(root, v)
     i.butt.place(x=ps_butt[0], y=ps_butt[1])
+    i.butt.configure(text=v)
     v += 1
     j += 1
 
+root.bind("<Key>", teclado)
 root.mainloop()
